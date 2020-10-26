@@ -1,10 +1,14 @@
 <?php
 
-$conn = new PDO("mysql:host=localhost;dbname=villes;charset=utf8mb4","toto","toto",[]);
+$conn = new PDO("mysql:host=localhost;dbname=dwwm_2020;charset=utf8mb4", "root", "", []);
 
-$stmt = $conn->prepare("SELECT ville_nom FROM villes_france_free WHERE ville_departement='64' ORDER BY ville_nom LIMIT 100");
+$stmt = $conn->prepare("SELECT * FROM etudiant");
 
 $stmt->execute();
+
+$etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+var_dump($etudiants);
 
 // $villes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -12,6 +16,6 @@ $stmt->execute();
 //     var_dump($ville);
 // }
 
-while($ville = $stmt->fetch()){
-    var_dump($ville["ville_nom"]);
+while ($etudiant = $stmt->fetch()) {
+    var_dump($etudiant["nom"]);
 }
